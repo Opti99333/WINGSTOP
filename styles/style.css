@@ -1,0 +1,878 @@
+:root{
+  --bg:#0b0f14; --card:#0f1621; --acc:#49f2a8; --acc2:#ffd166;
+  --danger:#ff5964; --text:#e8f0ff; --muted:#93a3b5; --shadow:0 10px 30px rgba(0,0,0,.35);
+  --speech-h:72px;
+    --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+}
+button{
+    cursor: pointer;
+}
+
+.controls .cta.danger {
+  background: linear-gradient(180deg, #ff5c5c, #d93030);
+  box-shadow: 0 6px 18px rgba(255, 90, 100, .35), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.controls .cta.danger:hover {
+  background: linear-gradient(180deg, #d93030, #b81f1f);
+}
+
+/* base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+
+   position: relative;
+  margin:0;
+  font-family: var(--font-sans);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0c1014;
+  color: #F5F5F5;
+  overflow-x:hidden;
+}
+body > main{
+  flex:1; /* основной контент растягивается */
+}
+body::after{
+  content:""; position:fixed; inset:0;
+  background-repeat:repeat; background-size:220px 220px; background-position:0 0;
+  opacity:.06; pointer-events:none; z-index:0;
+}
+
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:32px 20px 1px;position:relative; border-radius: 20px;}
+
+/* Header */
+header{z-index:999; display:flex; align-items:center; gap:14px; justify-content:space-between;
+  position:sticky; top:0; background:linear-gradient(to bottom, rgba(11,15,20,.9), rgba(11,15,20,.6));
+  backdrop-filter: blur(8px); padding:12px 20px;  z-index:20}
+.brand{display:flex; gap:12px; align-items:center;}
+.logo{width:100px; height:50px; border-radius:12px; display:grid; place-items:center;  mix-blend:screen}
+nav{display:flex; gap:10px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,.12);
+  padding:10px 14px; border-radius:14px; background: #006938;
+  transition:.2s; font-weight:600; color:var(--text)}
+.btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.32)}
+
+/* Grid */
+.hero{display:grid; grid-template-columns:1.1fr 1.2fr; gap:28px; margin-top:22px}
+
+
+/* Cards */
+.card{background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.15));
+  border:1px solid rgba(255,255,255,.08); border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,.5) }
+.pane{padding:22px}
+
+/* Left panel */
+.girl {
+  display: grid;
+  place-items: center; 
+}
+.pane .avatar-wrap{
+  display: flex !important;
+  flex-direction: column !important;  /* ВАЖНО: именно колонка */
+  align-items: center;
+  justify-content: center;            /* вертикальный центр внутри карточки */
+  gap: 14px;
+  width: 100%;
+}
+.link-x{
+  width: 38px !important;
+  height: 38px  !important;
+}
+
+.avatar{ width: clamp(200px, 28vw, 400px);
+  height: clamp(200px, 28vw, 400px); max-width: 100%; border-radius:32px; position:relative; display:grid; place-items:center;
+  background: radial-gradient(140px 140px at 50% 40%, #2a3346, #151a24); overflow:hidden; flex: 0 0 auto; }
+
+.face{ width:100%; height:100%; object-fit:contain; display:block; transition:.25s transform; z-index:10 }
+.angry .face{ animation:shake .35s linear infinite }
+.happy .face{ animation:pulse 1.6s ease-in-out infinite }
+
+.hearts{ position:absolute; inset:0; pointer-events:none; overflow:hidden }
+.heart{ position:absolute; top:-20px; font-size:14px; opacity:0; animation:heart-fall var(--dur,1.8s) linear forwards }
+@keyframes heart-fall{ 0%{top:-20px;opacity:0;transform:scale(.9)} 10%{opacity:1} 100%{top:105%;opacity:0;transform:scale(1.1)} }
+
+.hunger{ width:100%; max-width:320px; background:#0a0f15; border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; height:18px }
+.bar{ height:100%; width:50%; background:linear-gradient(90deg, var(--danger), #f9a3a9); transition:width .3s ease }
+.bar.ok{ background:linear-gradient(90deg, #3cd67c, var(--acc)) }
+
+.controls{ width:100%; max-width:485px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
+.cta{ background:linear-gradient(180deg, #2ECC71, #27AE60); color:#fff; font-weight:700; border:none; border-radius:14px; padding:14px 20px; cursor:pointer; transition:.2s }
+.cta:hover{ background:linear-gradient(180deg, #27AE60, #1F8E50); transform:translateY(-2px) }
+.sec{ background:transparent; border:1px solid rgba(255,255,255,.2); color:#F5F5F5; border-radius:14px; padding:12px 16px; font-weight:600 }
+kbd{ background:#0c131d; border:1px solid rgba(255,255,255,.12); padding:4px 6px; border-radius:8px; color:var(--muted); font-weight:600 }
+.keys-hint{ color:var(--muted); font-size:13px }
+
+/* Right panel: videos */
+.video-card .video{ position:relative; height: clamp(320px, 52vh, 680px); border-radius:18px; overflow:hidden; background:#000 }
+.video-card .video video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; border-radius:18px; display:block; background:#000 }
+#wingstopAltVideo{ 
+  object-fit: contain !important; 
+  object-position: center bottom; 
+  border-radius: 14px;
+  background:#000; 
+}
+.subtitle{
+  font-size:24px;color:var(--muted);
+}
+
+
+
+
+.link-btn {
+  width: 45px;
+  height: 45px;
+}
+/* mute btn */
+.mute-btn{
+  position:absolute; top:10px; right:10px; z-index:100;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.2);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.18));
+  color:#F5F5F5; font-size:18px; font-weight:700; cursor:pointer; user-select:none; backdrop-filter:blur(6px)
+}
+.mute-btn[disabled]{ pointer-events:none; opacity:.5; cursor:default; filter:grayscale(60%) }
+
+/* speech */
+.speech-slot{ position:relative; height:var(--speech-h); width:100%; display:flex; align-items:flex-end; justify-content:center; overflow:hidden }
+.speech{ position:relative; background:rgba(15,30,45,.85); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:10px 14px; font-size:15px; color:var(--muted); max-width:min(360px, 90%); text-align:center; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
+.speech b{ color:var(--text) }
+
+/* Animations base */
+@keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-3px,1px)}50%{transform:translate(2px,-2px)}75%{transform:translate(-2px,2px)}100%{transform:translate(0,0)}}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
+.confetti{pointer-events:none;position:fixed;inset:0;overflow:hidden}
+.piece{position:absolute;width:8px;height:12px;opacity:.9;border-radius:2px}
+
+/* === DISCO MODE === */
+body.is-disco{ background: radial-gradient(circle at 50% -20%, #161325, #0b0f14 75%) !important }
+body.is-disco::after{ opacity:.02 }
+
+.disco-fx{ position:fixed; inset:0; pointer-events:none; z-index:40; display:none }
+body.is-disco .disco-fx{ display:block }
+.attract{
+width: 48%;
+}
+/* мягкая дымка */
+.disco-fx::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(40% 60% at 20% 10%, rgba(255,76,180,.18), transparent 60%),
+    radial-gradient(50% 70% at 80% 20%, rgba(76,180,255,.16), transparent 60%),
+    radial-gradient(60% 80% at 50% 90%, rgba(255,220,90,.14), transparent 60%);
+  mix-blend-mode:screen; animation:bg-shift 16s ease-in-out infinite alternate
+}
+@keyframes bg-shift{ 0%{transform:translateY(0)} 100%{transform:translateY(-2%)} }
+
+/* твоя картинка диско-шара */
+.disco-ball-img{
+  position:absolute; left:50%; top:-220px; transform:translateX(-50%);
+  width:clamp(90px, 11vw, 180px); height:auto;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,.45));
+  animation:disco-drop .9s ease-out forwards, disco-swing 3.2s ease-in-out .9s infinite alternate
+}
+@keyframes disco-drop{ to{ top:20px } }
+@keyframes disco-swing{ 0%{transform:translateX(-50%) rotate(-4deg)} 100%{transform:translateX(-50%) rotate(4deg)} }
+
+/* танцоры */
+.dancers{ position:absolute; left:0; right:0; bottom:10px; height:140px; display:flex; gap:22px; justify-content:center; align-items:flex-end; pointer-events:none }
+.dancer{ font-size:64px; filter:drop-shadow(0 6px 12px rgba(0,0,0,.6)); opacity:0; transform:translateY(40px) scale(.9);
+  animation:dancer-in .6s ease-out forwards, dance 1.2s ease-in-out .6s infinite }
+.dancer.d1{ animation-delay:.1s,.7s } .dancer.d2{ animation-delay:.2s,.8s } .dancer.d3{ animation-delay:.3s,.9s }
+@keyframes dancer-in{ to{opacity:1; transform:translateY(0) scale(1)} }
+@keyframes dance{ 0%,100%{transform:translateY(0) rotate(0) scale(1)} 25%{transform:translateY(-10px) rotate(-6deg) scale(1.04)} 75%{transform:translateY(-8px) rotate(6deg) scale(1.03)} }
+
+/* прожекторы */
+.spots{ position:absolute; inset:0; overflow:hidden; pointer-events:none }
+.spot{
+  position:fixed; width:32vmin; height:32vmin; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.35) 0%, rgba(255,255,255,.15) 35%, rgba(255,255,255,0) 70%);
+  mix-blend-mode:screen; filter:blur(2px); opacity:.75;
+  animation:spot-fly var(--dur,12s) linear infinite
+}
+@keyframes spot-fly{
+  0%{ transform:translate(var(--x-start, -20vw), var(--y-start, 20vh)) }
+  100%{ transform:translate(var(--x-end, 110vw), var(--y-end, -10vh)) }
+}
+/* ===== Fancy buttons ===== */
+.controls .cta,
+.controls .sec{
+  position: relative;
+  isolation: isolate;          /* чтобы блик и ripple не вылезали */
+  font-size: 18px;          /* текст крупнее */
+  padding: 18px 28px;       /* внутренние отступы больше */
+  border-radius: 18px;      
+  line-height: 1;
+  align-items: center;
+  gap: 10px;
+  transform: translateZ(0);     /* сглаживает анимации */
+  transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
+  overflow: hidden;             /* для ripple */
+  min-width: 150px;         /* одинаковый минимум по ширине */
+  min-height: 56px;         /* выше */
+}
+
+.controls .cta{
+  border: 0;
+  color: #fff;
+  background:
+    linear-gradient(180deg,#34d17a,#21a95f) padding-box,
+    linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,255,255,0)) border-box;
+  box-shadow:
+    0 6px 18px rgba(33,169,95,.35),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+.controls .cta:hover{ transform: translateY(-2px) scale(1.02); }
+.controls .cta:active{ transform: translateY(0) scale(.98); }
+
+/* стеклянная вторичная */
+.controls .sec{
+  color:#F5F5F5;
+  border: 1px solid rgba(255,255,255,.25);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.18));
+  backdrop-filter: blur(6px);
+}
+.controls .sec:hover{ transform: translateY(-2px); }
+.controls .sec:active{ transform: translateY(0) scale(.98); }
+
+/* shine-блик при ховере */
+.controls .cta::after,
+.controls .sec::after{
+  content:"";
+  position:absolute; inset:-2px;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 40%, transparent 60%);
+  transform: translateX(-150%);
+  opacity:.0; pointer-events:none;
+}
+.controls .cta:hover::after,
+.controls .sec:hover::after{
+  animation: btn-shine 1.1s ease;
+  opacity:.6;
+}
+@keyframes btn-shine{
+  from{ transform: translateX(-150%); }
+  to  { transform: translateX(150%); }
+}
+
+/* неоновая рамка, когда диско включён */
+.controls .sec.is-on{
+  color:#fff;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(20,20,20,.55), rgba(0,0,0,.3)) padding-box,
+    conic-gradient(from 0deg, #ff6ec7, #66d1ff, #ffd166, #9cff6e, #ff6ec7) border-box;
+  box-shadow: 0 0 18px rgba(255,255,255,.12), 0 0 38px rgba(102,209,255,.22);
+  animation: hue-rot 6s linear infinite;
+}
+@keyframes hue-rot{ to{ filter: hue-rotate(360deg); } }
+
+/* микро-анимации иконок */
+.controls .cta .ico,
+.controls .sec .ico{ display:inline-block; transform-origin: center; font-size: 22px; }
+.controls .cta:hover .ico{ animation: jiggle .6s ease; }
+@keyframes jiggle{
+  0%,100%{ transform: rotate(0) translateY(0) }
+  30%{ transform: rotate(-8deg) translateY(-1px) }
+  60%{ transform: rotate(5deg) translateY(0) }
+}
+
+/* ripple при клике */
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  transform: scale(0);
+  background: radial-gradient(circle, rgba(255,255,255,.45), rgba(255,255,255,0) 60%);
+  animation: ripple .6s ease-out forwards;
+  pointer-events:none;
+  opacity:.85;
+}
+@keyframes ripple{ to{ transform: scale(3); opacity:0; } }
+
+/* фокус-кольцо */
+.controls .cta:focus-visible,
+.controls .sec:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(73,242,168,.25), 0 0 0 6px rgba(73,242,168,.12);
+}
+/* ===== Bottom contract strip ===== */
+.grid-full{ grid-column: 1 / -1; }
+
+.contract-strip{
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;            
+  display:flex; gap:14px;
+  padding:16px; border-radius:18px;
+  background-color: #0c1014;
+}
+
+.contract-pill{
+  flex: 0 1 auto;             
+  min-height:52px;
+  text-align: center;         /* текст по центру */
+  justify-content: center;
+  max-width: calc(100% - 140px);
+  border-radius:14px;
+  padding:12px 16px;
+  display:flex; align-items:center;
+  color:#fff; font-weight:900; letter-spacing:.5px; text-transform:uppercase;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  user-select:all; cursor:pointer;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: .08em;
+  font-feature-settings: "tnum" 1, "zero" 1; /* табличные цифры и перечёркнутый 0 */
+
+  background:transparent; border:1px solid rgba(255,255,255,.2); color:#F5F5F5; border-radius:14px; padding:12px 16px; font-weight:600;
+}
+.controls .cta, .controls .sec, .copy-btn{
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: .2px;
+  font-size: 25px;
+}
+.wingtitle{
+  font-size:50px;font-weight:900;letter-spacing:.2px;
+}
+.contract-pill::selection{ background: rgba(73,242,168,.25); }
+
+.copy-btn{
+  
+  flex:0 0 auto;
+  height:52px; padding:0 20px;
+  border-radius:14px; font-weight:900; letter-spacing:.5px;
+  border:0; color:#121212;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(255,209,102,.25), inset 0 1px 0 rgba(255,255,255,.35);
+  cursor:pointer; transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.copy-btn:hover{ transform: translateY(-2px); }
+.copy-btn:active{ transform: translateY(0) scale(.98); }
+
+/* состояние «скопировано» */
+.copy-btn.is-copied{
+  background: linear-gradient(180deg, #7CFFCB, #3CE7A0);
+  color:#0b0f14;
+  box-shadow: 0 10px 24px rgba(76, 225, 170, .25);
+}
+
+
+
+/* чтобы диско-оверлей не перекрывал строку */
+/* чтобы оверлей был над контентом, но ниже шапки */
+.disco-fx{ z-index: 15 !important; }  /* pointer-events:none уже задан выше */
+
+.wrap{ position:relative; z-index:1; }
+/* Особая реплика при шкале = 0 */
+.speech.shout{
+  background: linear-gradient(180deg, rgba(255,80,80,.18), rgba(0,0,0,.25));
+  border: 1px solid rgba(255,120,120,.45);
+  color: #ffe7e7;
+  -webkit-line-clamp: 3;           /* длинная фраза влезет */
+  letter-spacing: .2px;
+  animation: shout-wobble .45s ease-in-out 1; /* лёгкое «потряхивание» */
+}
+.speech.shout b{ color:#fff; }
+@keyframes shout-wobble{
+  0%{ transform: scale(1) }
+  30%{ transform: scale(1.03) rotate(-0.6deg) }
+  60%{ transform: scale(1.02) rotate(0.6deg) }
+  100%{ transform: scale(1) }
+}
+/* === ATTRACT PULSE FOR CTA/SEC === */
+.controls .cta.attract,
+.controls .sec.attract{
+  filter: drop-shadow(0 0 0 rgba(73,242,168,0));
+  animation: btn-glow-pulse 1.8s ease-in-out infinite;
+}
+
+/* светящееся кольцо-аура (под кнопкой) */
+.controls .cta.attract::before,
+.controls .sec.attract::before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:18px;
+  pointer-events:none;
+  background:
+    radial-gradient(60% 80% at 50% 50%, rgba(73,242,168,.22), rgba(73,242,168,0) 70%);
+  opacity:.75;
+  animation: btn-aura-pulse 1.8s ease-in-out infinite;
+  z-index:-1;
+}
+.speech-slot { display: none; }
+
+
+/* лёгкий «подталкивающий» нудж раз в несколько циклов */
+.controls .cta.attract .label,
+.controls .sec.attract .label{
+  font-size: 25px;
+  display:inline-block;
+  animation: btn-nudge 6s ease-in-out infinite;
+}
+
+/* базовая пульсация свечения (box-shadow/brightness) */
+@keyframes btn-glow-pulse{
+  0%   { transform: translateY(0) scale(1);   box-shadow: 0 8px 22px rgba(73,242,168,.10); filter: brightness(1); }
+  50%  { transform: translateY(-1px) scale(1.03); box-shadow: 0 14px 34px rgba(73,242,168,.30); filter: brightness(1.08); }
+  100% { transform: translateY(0) scale(1);   box-shadow: 0 8px 22px rgba(73,242,168,.10); filter: brightness(1); }
+}
+
+/* аура «дышит» и чуть расширяется */
+@keyframes btn-aura-pulse{
+  0%   { opacity:.55; transform: scale(0.98); }
+  50%  { opacity:.9;  transform: scale(1.04); }
+  100% { opacity:.55; transform: scale(0.98); }
+}
+
+/* редкий нудж текста (едва заметный) */
+@keyframes btn-nudge{
+  0%, 86%, 100% { transform: translateX(0); }
+  90% { transform: translateX(1px) rotate(-0.5deg); }
+  94% { transform: translateX(-1px) rotate(0.5deg); }
+  98% { transform: translateX(0); }
+}
+
+/* Если пользователь просит уменьшить анимации — уважим */
+
+/* Скрыть старую кнопку mute на видео (если не удалил из HTML) */
+#muteBtn{ display:none !important; }
+
+/* Большая кнопка SHUT UP */
+.controls--shutup .shutup{
+  width:100%;
+  max-width:320px;
+  min-height:60px;
+  padding:16px 20px;
+  border-radius:18px;
+  border:0;
+  font-weight:900;
+  font-size:18px;
+  letter-spacing:.3px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:#0b0f14;
+  cursor:pointer;
+  user-select:none;
+
+  /* активное (звук включён) — предлагаем «SHUT UP» */
+  background: linear-gradient(180deg, #ff7b7b, #ff4d4d);
+  box-shadow:
+    0 10px 24px rgba(255,77,77,.28),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  /* пульс + мягкое покачивание внимания */
+  animation: shutup-pulse 1.8s ease-in-out infinite, shutup-wiggle 8s ease-in-out infinite;
+}
+
+/* Когда сайт заглушён (mute), показываем "TURN IT UP" — зелёная тема */
+.controls--shutup .shutup.is-muted{
+  color:#0b0f14;
+  background: linear-gradient(180deg, #7CFFCB, #3CE7A0);
+  box-shadow:
+    0 10px 26px rgba(76,225,170,.28),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* Ховеры/активные */
+.controls--shutup .shutup:hover{ transform: translateY(-2px); }
+.controls--shutup .shutup:active{ transform: translateY(0) scale(.98); }
+
+/* Иконка крупнее */
+.controls--shutup .shutup .ico{ font-size:22px; }
+
+/* Анимации */
+@keyframes shutup-pulse{
+  0%   { filter: brightness(1);   box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+  50%  { filter: brightness(1.08); box-shadow: 0 18px 38px rgba(0,0,0,.32); }
+  100% { filter: brightness(1);   box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+}
+@keyframes shutup-wiggle{
+  0%, 88%, 100% { transform: translateY(0) rotate(0); }
+  92% { transform: translateY(-1px) rotate(-0.6deg); }
+  96% { transform: translateY( 1px) rotate(0.6deg); }
+}
+
+.footer{
+  margin-top:auto;           /* всегда прижимается вниз */
+  text-align:center;         /* центрируем текст */
+  display:flex;              /* для надёжного центрирования */
+  align-items:center;        /* по вертикали (если будет несколько строк) */
+  justify-content:center;    /* по горизонтали */
+  font-size:13px;
+  color: var(--muted);
+  padding:20px 0;
+  opacity:.7;
+  background:transparent;
+}
+.footer p{
+  margin:0;
+  font-family: var(--font-sans);
+  font-weight:500;
+  letter-spacing:.3px;
+}
+
+/* страховки от горизонтального скролла */
+html, body{ overflow-x:hidden; }
+img, video, canvas{ max-width:100%; height:auto; }
+
+@media (max-width: 420px){
+
+  /* чтобы грид не растягивал айтем и центрировал его */
+  .hero{
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+
+  /* сама секция */
+  .hero > section.card.pane.video-card{
+    width: 300px !important;
+    max-width: 300px !important;
+    min-width: 0 !important;         /* ВАЖНО: позволяем сжиматься в grid */
+    justify-self: center !important;  /* на всякий случай */
+    margin: 0 auto !important;
+    padding: 12px !important;         /* чтобы в 200px влезало вместе с паддингами */
+  }
+
+  /* внутренний контейнер с видео не шире секции */
+  .hero > section.card.pane.video-card .video{
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    height: auto !important;
+    min-height: unset !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .hero > section.card.pane.video-card .video > video{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+  }
+  
+}
+
+
+
+
+/* ↓ Малые телефоны */
+@media (max-width: 480px){
+  .wrap{ padding: 18px 14px 40px; }
+  header{ padding: 10px 14px; }
+  .logo{ width: 80px; height: 40px; }
+  .hero{ grid-template-columns: 1fr; gap: 18px; }
+
+  .avatar{ width: 64vw; height: 64vw; border-radius: 18px; }
+  .hunger{ max-width: 280px; height: 14px; }
+  .controls{ max-width: 100%; gap: 10px; }
+  .controls .cta,
+  .controls .sec{ min-width: 44%; min-height: 48px; font-size: 15px; padding: 12px 14px; }
+  .controls--shutup .shutup{ min-height: 52px; font-size: 15px; }
+
+  .video-card .video{ height: 52vw; min-height: 260px; }
+  #wingstopAltVideo{ object-position: center bottom; }
+
+  .contract-strip{ flex-direction: column; align-items: stretch; gap: 10px; }
+  .contract-pill{ font-size: 13px; min-height: 46px; }
+  .copy-btn{ height: 46px; width: 100%; }
+}
+
+
+
+
+.wingtitle{
+    font-size: 35px;
+  }
+
+.subgtitle{
+  font-size: 20px;
+}
+
+/* ↓ Телефоны/планшеты (портрет) */
+@media (max-width: 600px) {
+  .controls .cta,
+  .controls .sec {
+    font-size: 16px;
+    padding: 14px 22px;
+    min-width: 120px;
+    min-height: 48px;
+  }
+  .controls .cta .ico,
+  .controls .sec .ico { font-size: 20px; }
+
+  .controls--shutup .shutup{
+    max-width:none;
+    min-height:54px;
+    font-size:16px;
+  }
+}
+
+/* ===== FIX: компактные карточки и медиа ниже 720 / 680px ===== */
+
+/* 1) общий «контент-макс-width» для узких экранов */
+@media (max-width: 720px){
+  .pane,                      /* левая карточка */
+  .video-card,                /* правая карточка с видео */
+  .contract-strip {           /* нижняя полоса */
+    max-width: 640px;         /* контентная ширина */
+    margin-inline: auto;      /* ровные поля слева/справа */
+  }
+
+  /* аватар — меньше и центр */
+  .avatar{
+    width: clamp(200px, 56vw, 300px) !important;
+    height: auto !important;  /* квадрат держит aspect-ratio выше */
+    margin-inline: auto;
+  }
+
+  /* видео — не во всю ширину, с полями */
+  .video-card .video{
+    width: 94% !important;    /* внутренние боковые поля */
+    margin-inline: auto !important;
+    aspect-ratio: 16/9;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-card .video video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover;         /* поставь contain, если хочешь без обрезки */
+  }
+
+  /* кнопки под аватаром — в столбик и на всю ширину */
+  .controls{ width:100%; gap:10px; justify-content:center; }
+  .controls .cta, .controls .sec{ width:100%; min-height:48px; }
+  .controls--shutup .shutup{ width:100%; min-height:52px; }
+}
+
+
+/* ещё компактнее на очень узких (реальные телефоны в портрете) */
+@media (max-width: 680px){
+.contract-strip{
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    gap: 10px;
+    flex-direction: column;      /* кнопка уходит вниз */
+    align-items: stretch;
+  }
+
+  .contract-pill{
+    box-sizing: border-box;
+    flex: 0 1 auto;              /* не растягиваем на всю ширину ради «ellipsis» */
+    width: 100%;
+    min-height: unset;
+    height: auto;                 /* авто-высота под переносы */
+    padding: 12px 14px;
+
+    /* ВАЖНО: разрешаем переносы вместо обрезания */
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word;       /* можно и на пробелах, и внутри блоков по 4 символа */
+    overflow-wrap: anywhere;
+
+    /* чуть компактнее шрифт, чтобы влезало красивее */
+    font-size: clamp(12px, 3.4vw, 14px);
+    letter-spacing: .04em;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .copy-btn{
+    width: 100%;
+    height: 48px;
+  }
+}
+
+
+@media (max-height: 560px){
+  .disco-ball-img{
+    display: none;
+  }
+}
+
+/* ↓ Универсальный мобильный FIX (до 768px) */
+@media (max-width: 768px) {
+  /* Контейнер */
+  .wrap { padding: 12px 16px; max-width: 100%; }
+
+  /* Хедер */
+  header { flex-direction: column; align-items: stretch; gap: 10px; }
+  header .brand { justify-content: center; }
+  header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  header nav .btn { flex: 1 1 auto; min-width: 30%; text-align: center; }
+
+  /* Hero в одну колонку */
+  .hero { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Левая панель */
+  .avatar { width: 80vw; height: auto; aspect-ratio: 1 / 1; max-width: 320px; }
+
+  .controls { width: 100%; flex-direction: column; }
+
+  /* Правая панель (видео) */
+  .video-card .video { width: 100%; aspect-ratio: 16 / 9; min-height: 200px; }
+  .video-card .video video { object-fit: cover; }
+
+  /* Нижняя строка */
+  .contract-strip { flex-direction: column; align-items: stretch; gap: 10px; }
+  .contract-pill { max-width: 100%; text-align: center; }
+  .copy-btn { width: 100%; }
+}
+
+
+/* ===== HARD MOBILE MODE (≤ 770px) ===== */
+@media (max-width: 770px){
+
+  /* 1) Контейнер и сетка */
+  .wrap{ padding: 12px 16px !important; max-width: 100% !important; }
+  .hero{ grid-template-columns: 1fr !important; gap: 14px !important; }
+
+  /* 2) Карточки: меньше паддинги, радиус и тени поспокойнее */
+  .card{ border-radius: 14px !important; box-shadow: 0 6px 16px rgba(0,0,0,.35) !important; }
+  .pane{ padding: 14px !important; }
+
+  /* 3) Левая панель */
+  .avatar{
+    aspect-ratio: 1 / 1;
+    width: min(72vw, 320px) !important;   /* компактный квадрат */
+    height: auto !important;
+    border-radius: 18px !important;
+  }
+  .hunger{  height: 14px !important; }
+  .controls{ width: 100% !important; gap: 10px !important; justify-content: center; }
+  .controls .cta, .controls .sec{
+    width: 100% !important; min-height: 48px !important; font-size: 15px !important;
+  }
+  .controls--shutup .shutup{ width: 100% !important; min-height: 52px !important; }
+
+  /* 4) Правая панель (видео) — строго ограничиваем размер */
+  .video-card .video{
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9;             /* контролируем высоту через отношение сторон */
+    height: auto !important;
+    min-height: 200px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  .video-card .video video{
+    position: absolute !important;     /* сохраняем наложение видео/постера */
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;      /* или contain, если нужно целиком */
+  }
+
+  /* 5) Нижняя «contract‑strip» — компактно, без расползаний */
+  .contract-strip{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+  .contract-pill{ max-width: 100% !important; text-align: center !important; }
+  .copy-btn{ width: 100% !important; height: 48px !important; }
+
+  /* 6) Шапка — не раздуваем, кнопки сеткой */
+  header{
+    padding: 10px 16px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  header .brand{ justify-content: center !important; }
+  header nav{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  header nav .btn{
+    min-height: 40px !important;
+    justify-content: center !important;
+    padding: 10px 0 !important;
+  }
+
+  /* 7) Убираем любые горизонтальные переполнения на всякий случай */
+  html, body{ overflow-x: hidden !important; }
+  img, video, canvas{ max-width: 100% !important; height: auto; }
+}
+
+
+/* ↓ Планшеты/малые ноуты (481–900) */
+@media (min-width: 481px) and (max-width: 900px){
+  .hero{ grid-template-columns: 1fr; gap: 22px; }
+  .avatar{ width: clamp(280px, 58vw, 360px); height: clamp(280px,58vw,360px); }
+  .video-card .video{ height: clamp(320px, 48vh, 560px); }
+  .contract-strip{ gap: 12px; }
+}
+
+/* ↓ Лаптопы (901–1366) */
+@media (min-width: 901px) and (max-width: 1366px){
+  .wrap{ max-width: 1080px; }
+  .hero{ grid-template-columns: 1.05fr 1.2fr; gap: 22px; }
+  .avatar{ width: clamp(280px, 26vw, 360px); height: clamp(280px,26vw,360px); }
+  .video-card .video{ height: clamp(360px, 46vh, 620px); }
+}
+
+/* ↓ Десктопы 1367–1919 */
+@media (min-width: 1367px) and (max-width: 1919px){
+  .wrap{ max-width: 1320px; }
+  .hero{ grid-template-columns: 1.1fr 1.25fr; gap: 28px; }
+  .video-card .video{ height: clamp(520px, 50vh, 740px); }
+}
+
+/* ↓ 2K (1920–2559) */
+@media (min-width: 1920px) and (max-width: 2559px){
+  .wrap{ max-width: 1600px; }
+  .hero{ grid-template-columns: 1.1fr 1.2fr; gap: 34px; }
+  .avatar{ width: clamp(360px, 22vw, 520px); height: clamp(360px,22vw,520px); }
+  .video-card .video{ height: clamp(600px, 48vh, 820px); }
+  .btn{ padding: 12px 18px; font-size: 16px; }
+  .contract-pill{ font-size: 15px; min-height: 58px; }
+  .copy-btn{ height: 58px; }
+}
+
+/* ↓ 4K (>=2560) */
+@media (min-width: 2560px){
+  .wrap{ max-width: 2000px; }
+  .hero{ grid-template-columns: 1.1fr 1.2fr; gap: 40px; }
+  .avatar{ width: clamp(420px, 20vw, 640px); height: clamp(420px,20vw,640px); }
+  .video-card .video{ height: clamp(720px, 46vh, 980px); }
+  .btn{ padding: 14px 22px; font-size: 18px; border-radius: 16px; }
+  .controls .cta, .controls .sec{ min-height: 64px; font-size: 18px; }
+  .controls--shutup .shutup{ min-height: 68px; font-size: 20px; }
+  .contract-pill{ font-size: 22px; min-height: 64px; }
+  .copy-btn{ height: 64px; padding: 0 28px;  }
+}
+
+/* ↓ Прочие существующие у тебя точечные брейки — перенёс сюда */
+@media (max-width: 1000px){ .hero{ grid-template-columns:1fr; } }
+@media (max-width: 980px){ .avatar{ width:240px; height:240px; } }
+@media (max-width: 560px){ .avatar{ width:200px; height:200px; } }
+
+/* ↓ Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .controls .cta.attract,
+  .controls .sec.attract,
+  .controls .cta.attract::before,
+  .controls .sec.attract::before,
+  .controls--shutup .shutup{
+    animation: none !important;
+  }
+}
