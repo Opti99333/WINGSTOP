@@ -335,7 +335,6 @@ function groupEvery(str, n=4){
 }
 
 if (contractTextEl){
-  const show = groupEvery(CONTRACT_TEXT, 4);
   contractTextEl.textContent = show;
   contractTextEl.dataset.raw = CONTRACT_TEXT;
   contractTextEl.addEventListener('click', () => doCopy(contractTextEl.dataset.raw));
@@ -406,5 +405,6 @@ syncMediaUI();
 // 8) На старте — подсказка «включи диско» НЕ нужна, т.к. уже включено
 if (infoBtn) infoBtn.classList.toggle('attract', !showingAlt);
 // нет диско шара, чтобы он отображался изначально, а потом при переходе на оригинал пропадал
+
 
 
