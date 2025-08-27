@@ -29,7 +29,7 @@ const ALT_VIDEO     = "/images/wingstopgirlrock.mp4";  // диско-видео 
 
 // ===== Bottom strip text — ПРАВЬ ТУТ
 // Пример: контракт «your_CA». Ниже форматируем с пробелами каждые 4 символа.
-const CONTRACT_TEXT = "your_CA";
+const CONTRACT_TEXT = "4ERhMzXfkykX8byeEx1uCYXW2kkcQh9GFBLtfRBcsNuP";
 
 // ===== State
 let hunger = 75;              // 0..100
@@ -406,4 +406,5 @@ syncMediaUI();
 // 8) На старте — подсказка «включи диско» НЕ нужна, т.к. уже включено
 if (infoBtn) infoBtn.classList.toggle('attract', !showingAlt);
 // нет диско шара, чтобы он отображался изначально, а потом при переходе на оригинал пропадал
+
 
