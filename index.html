@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$WINGS</title>
+  <meta name="description" content="Feed the heroine — and she’ll spill the meme-coin alpha" />
+  <link rel="stylesheet" href="styles/recet.css">
+  <link rel="stylesheet" href="styles/style.css?v=16">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/angrygirl.ico">
+</head>
+<body>
+  <header class="wrap">
+    <div class="brand">
+      
+      <img style="width: 400px; height: 150px;" src="images/wingstop-logo.svg" alt="" class="logo">
+      <div>
+        
+      </div>
+    </div>
+    <nav class="navbar-links" style="text-align: center; align-items: center;">
+      <h2 class="me-5">$WINGS</h2>
+      <div style="display: flex; gap: 15px;">
+      <a class="btn" href="https://t.me/wingstopgirl" target="_blank" rel="noopener"><img class="link-btn" src="images/tg.png" alt=""></a>
+      <a class="btn" href="https://x.com/girl_wingstop" target="_blank" rel="noopener"><img class="link-btn link-x" src="images/X.png" alt=""></a>
+      <a class="btn" href="https://dexscreener.com/solana/your_CA" target="_blank" rel="noopener"><img class="link-btn" src="images/dex1.png" alt=""></a>
+    </div>
+    </nav>
+  </header>
+
+  <main class="wrap hero">
+    <!-- Left panel -->
+    <section class="card pane">
+      <div class="girl angry" id="girl">
+        <div class="avatar-wrap">
+          <div class="speech-slot">
+            <div class="speech" id="speech" aria-live="polite">
+            </div>
+          </div>
+<div class="wingtitle" >Wingstop Hungry Girl</div>
+        <div class="subgtitle" >Feed her, and the market will reward you</div>
+          <div class="avatar">
+            <img class="face" id="face" src="images/angry.png" alt="Angry">
+            <div class="hearts" id="hearts"></div>
+          </div>
+
+          <div class="hunger" aria-label="Hunger indicator">
+            <div class="bar" id="bar"></div>
+          </div>
+
+          <div class="controls">
+            <button class="cta" id="feed">
+  <span class="ico">🍗</span><span class="label">Feed me!</span>
+</button>
+
+<button class="sec" id="info">
+  <span class="label">Disco</span><span class="ico">🪩</span>
+</button>
+          </div>
+<div class="controls controls--shutup" style="margin-top:12px;">
+  <button id="shutupBtn" class="shutup" aria-pressed="true" aria-label="Toggle site sound">
+    <span class="label">SHUT UP</span> <span class="ico">🔇</span>
+  </button>
+</div>
+
+        </div>
+      </div>
+
+      <canvas class="confetti" id="confetti" width="0" height="0"></canvas>
+    </section>
+
+    <!-- Right panel: video -->
+    <section class="card pane video-card">
+      <div class="video">
+        <video id="wingstopVideo" playsinline autoplay muted>
+          <source src="images/wingstopgirl.mp4" type="video/mp4">
+        </video>
+
+
+        <video id="wingstopAltVideo" playsinline muted loop>
+
+          <source src="images/wingstopeat.mp4" type="video/mp4">
+        </video>
+      </div>
+            <div style="margin-top: 5%; display: flex; text-align: center; align-items: center; justify-content: center;  position: relative; z-index: 10;"> <a href="https://www.youtube.com/shorts/6jJ0RCryCis">
+<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#FF3D00" d="M43.2,33.9c-0.4,2.1-2.1,3.7-4.2,4c-3.3,0.5-8.8,1.1-15,1.1c-6.1,0-11.6-0.6-15-1.1c-2.1-0.3-3.8-1.9-4.2-4C4.4,31.6,4,28.2,4,24c0-4.2,0.4-7.6,0.8-9.9c0.4-2.1,2.1-3.7,4.2-4C12.3,9.6,17.8,9,24,9c6.2,0,11.6,0.6,15,1.1c2.1,0.3,3.8,1.9,4.2,4c0.4,2.3,0.9,5.7,0.9,9.9C44,28.2,43.6,31.6,43.2,33.9z"></path><path fill="#FFF" d="M20 31L20 17 32 24z"></path>
+</svg>
+</a>
+</div>
+    </section>
+
+    <div class="grid-full">
+  <div class="contract-strip ">
+    <div id="contractText" class="contract-pill" title="Tap to copy">
+
+    </div>
+
+    <button id="copyContract" class="copy-btn" aria-label="Copy to clipboard">
+      COPY
+    </button>
+     
+    <a href="https://dexscreener.com/solana/your_CA"><button id="" class="copy-btn color-buy" aria-label="Copy to clipboard">
+      BUY
+    </button></a>
+  </div>
+</div>
+ 
+
+
+  <div id="discoFX" class="disco-fx" aria-hidden="true">
+
+    <img id="discoBallImg" class="disco-ball-img" src="images/discoball.png" alt="Disco ball">
+
+
+
+    <div id="spots" class="spots" aria-hidden="true"></div>
+  </div>
+
+<footer class="footer">
+  <p>© 2025 Wingstop Hungry Girl</p>
+</footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
+
