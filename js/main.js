@@ -328,16 +328,9 @@ attachRipple(infoBtn);
 attachRipple(shutupBtn);
 
 // ===== Bottom contract strip
-function groupEvery(str, n=4){
-  // с пробелами каждые n символов, игнорируя начальные/конечные пробелы
-  const raw = (str || '').toString().replace(/\s+/g,'').trim();
-  return raw.replace(new RegExp(`(.{${n}})`, 'g'), '$1 ').trim();
-}
-
 if (contractTextEl){
-  const shown = groupEvery(CONTRACT_TEXT);
-  contractTextEl.textContent = shown;
-  contractTextEl.dataset.raw = CONTRACT_TEXT;
+  contractTextEl.textContent = CONTRACT_TEXT;   // показываем как есть
+  contractTextEl.dataset.raw = CONTRACT_TEXT;   // копируем тоже как есть
   contractTextEl.addEventListener('click', () => doCopy(contractTextEl.dataset.raw));
 }
 
@@ -406,6 +399,7 @@ syncMediaUI();
 // 8) На старте — подсказка «включи диско» НЕ нужна, т.к. уже включено
 if (infoBtn) infoBtn.classList.toggle('attract', !showingAlt);
 // нет диско шара, чтобы он отображался изначально, а потом при переходе на оригинал пропадал
+
 
 
 
